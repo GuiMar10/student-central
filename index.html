@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="title">
+      <img src="assets/emojis/wave.gif" alt="" />
+      <h1>Bem-vindo(a) ao Student Central</h1>
+      <h4>
+        Atualmente, estamos em beta. Relate qualquer bug em nosso repositório do
+        GitHub.
+      </h4>
+    </div>
+    <div class="subjectdiv" id="art">
+      <h2>Artes</h2>
+      <input type="number" id="n1" placeholder="AP1" onchange="check()" />
+      <input type="number" id="n2" placeholder="AT" onchange="check()" />
+      <p id="res">O resultado será mostrado aqui.</p>
+      <img src="" id="res" alt="" />
+    </div>
+
+    <script>
+      function check() {
+        let n1 = Number(document.querySelector("input#n1").value);
+        let n2 = Number(document.querySelector("input#n2").value);
+        let inputs = document.getElementsByTagName("input");
+        let counter = 0;
+        let emoji = "";
+        for (let i = 0; i < inputs.length; i++) {
+          if (inputs[i].value !== "") {
+            counter++;
+          }
+        }
+        let res = (n1 + n2) / counter;
+        document.querySelector("p#res").innerHTML = `Sua média é ${res}.`;
+        if (res == 10) {
+          document.querySelector("img#res").src = "assets/emojis/cork.gif";
+        } else if (res >= 7) {
+          document.querySelector("img#res").src = "assets/emojis/party.gif";
+        } else if (res >= 6) {
+          document.querySelector("img#res").src = "assets/emojis/meh.gif";
+        } else {
+          document.querySelector("img#res").src = "assets/emojis/sad.gif";
+          document.querySelector(
+            "p#res"
+          ).innerHTML += `<br />Isso é preocupante. Você precisa tirar ${
+            counter * 6 - (n1 + n2) + 6
+          } para passar.`;
+        }
+      }
+    </script>
+  </body>
+</html>
